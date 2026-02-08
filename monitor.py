@@ -6,7 +6,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-URL = "https://g1.globo.com/rj/rio-de-janeiro/"
+URL = "https://acessograduacao.ufrj.br/periodo-2026-1/2026-sisu-mec"
 STATE_FILE = "estado_anterior.txt"
 
 EMAIL_FROM = os.getenv("EMAIL_FROM")

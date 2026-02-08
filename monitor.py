@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import hashlib
 import os
 
-URL = "https://acessograduacao.ufrj.br/periodo-2026-1/2026-sisu-mec"
+URL = "https://news.ycombinator.com/"
 STATE_FILE = "estado_anterior.txt"
 
 def obter_estado_pagina():

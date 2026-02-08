@@ -11,15 +11,21 @@ STATE_FILE = "estado_anterior.txt"
 
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-EMAIL_TO = os.getenv("EMAIL_TO")
+
+DESTINATARIOS = [
+    "rafaelhechtman@gmail.com",
+    "eduardohechtman@hotmail.com",
+    "estherhechtman@gmail.com",
+    # ... até 10
+]
 
 def enviar_email():
-    if not EMAIL_FROM or not EMAIL_PASSWORD or not EMAIL_TO:
-        raise RuntimeError("Secrets de e-mail não configurados (EMAIL_FROM/EMAIL_PASSWORD/EMAIL_TO).")
+    if not EMAIL_FROM or not EMAIL_PASSWORD:
+        raise RuntimeError("Secrets de e-mail não configurados (EMAIL_FROM/EMAIL_PASSWORD).")
 
     msg = MIMEMultipart()
     msg["From"] = EMAIL_FROM
-    msg["To"] = EMAIL_TO
+    msg["To"] = ", ".join(DESTINATARIOS)
     msg["Subject"] = "Atualização detectada no site da UFRJ (SiSU 2026)"
 
     corpo = f"""O robô detectou uma atualização no site da UFRJ (SiSU 2026).
@@ -32,7 +38,7 @@ Abra o link oficial para conferir:
     with smtplib.SMTP("smtp.gmail.com", 587) as server:
         server.starttls()
         server.login(EMAIL_FROM, EMAIL_PASSWORD)
-        server.send_message(msg)
+        server.sendmail(EMAIL_FROM, DESTINATARIOS, msg.as_string())
 
 def obter_estado_pagina():
     response = requests.get(URL, timeout=30)

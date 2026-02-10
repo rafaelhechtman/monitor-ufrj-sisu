@@ -16,6 +16,7 @@ DESTINATARIOS = [
     "rafaelhechtman@gmail.com",
     "eduardohechtman@hotmail.com",
     "estherhechtman@gmail.com",
+    "andre.genton10@gmail.com",
     # ... até 10
 ]
 
